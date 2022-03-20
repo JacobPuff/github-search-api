@@ -42,7 +42,7 @@ type GithubSearchServiceServer struct {
 func (s *GithubSearchServiceServer) Search(ctx context.Context, req *searchv1.SearchRequest) (*searchv1.SearchResponse, error) {
 	search_term := req.GetSearchTerm()
 	user := req.GetUser()
-	log.Println("Got a request to search for", search_term, "from user", user)
+	log.Printf("Got a request to search for '%s' filtered to user '%s'", search_term, user)
 
 	return &searchv1.SearchResponse{Results: []*searchv1.Result{{FileUrl: "yeet", Repo: "haw"}}}, nil
 }
