@@ -11,6 +11,9 @@ import (
 	"google.golang.org/grpc"
 )
 
+const search_term = "testin"
+const user = "stuff"
+
 func main() {
 	if err := run(); err != nil {
 		log.Fatal(err)
@@ -25,8 +28,6 @@ func run() error {
 	log.Println("Connected to", connectTo)
 
 	github_search := searchv1.NewGithubSearchServiceClient(conn)
-	search_term := "testin"
-	user := "stuff"
 	response, err := github_search.Search(context.Background(), &searchv1.SearchRequest{
 		SearchTerm: search_term,
 		User:       user,
