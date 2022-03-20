@@ -17,7 +17,7 @@ func main() {
 	}
 }
 func run() error {
-	connectTo := "127.0.0.1:8080"
+	connectTo := "0.0.0.0:8080"
 	conn, err := grpc.Dial(connectTo, grpc.WithBlock(), grpc.WithInsecure())
 	if err != nil {
 		return fmt.Errorf("failed to connect to GithubSearchService on %s: %w", connectTo, err)
