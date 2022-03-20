@@ -32,7 +32,7 @@ buf generate
 ```
 go run server/main.go
 ```
-5. Run the client. The client has
+5. Run the client. The client has two constants at the top of the file if you wanna change their values for the search.
 ```
 go run client/client.go
 ```
