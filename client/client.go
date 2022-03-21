@@ -2,8 +2,9 @@ package main
 
 import (
 	"context"
-	"fmt"
-	"log"
+	"os"
+
+	log "github.com/sirupsen/logrus"
 
 	// This import path is based on the name declaration in the go.mod,
 	// and the gen/proto/go output location in the buf.gen.yaml.
@@ -15,17 +16,20 @@ const SEARCH_TERM = "search repo:jacobpuff/github-search-api"
 const USER = ""
 
 func main() {
-	if err := run(); err != nil {
-		log.Fatal(err)
-	}
+	log.SetFormatter(&log.JSONFormatter{})
+	log.SetOutput(os.Stdout)
+	log.SetLevel(log.InfoLevel)
+	run()
 }
-func run() error {
-	connectTo := "0.0.0.0:8080"
+func run() {
+	connectTo := GetEnvOrDefault("GH_SEARCH_SERVER_ADDRESS", "0.0.0.0")
+	connectTo += ":" + GetEnvOrDefault("GH_SEARCH_SERVER_PORT", "8080")
+	log.Infof("HWAH %s", connectTo)
 	conn, err := grpc.Dial(connectTo, grpc.WithBlock(), grpc.WithInsecure())
 	if err != nil {
-		return fmt.Errorf("failed to connect to GithubSearchService on %s: %w", connectTo, err)
+		log.Fatalf("failed to connect to GithubSearchService on %s: %w", connectTo, err)
 	}
-	log.Println("Connected to", connectTo)
+	log.Infof("Connected to", connectTo)
 
 	github_search := searchv1.NewGithubSearchServiceClient(conn)
 	response, err := github_search.Search(context.Background(), &searchv1.SearchRequest{
@@ -33,12 +37,19 @@ func run() error {
 		User:       USER,
 	})
 	if err != nil {
-		return fmt.Errorf("failed to search: %w", err)
+		log.Fatalf("failed to search: %w", err)
 	}
 
-	log.Printf("Successfully searched term '%s' filtered to user '%s', got response:", SEARCH_TERM, USER)
+	log.Infof("Successfully searched term '%s' filtered to user '%s', got response:", SEARCH_TERM, USER)
 	for _, item := range response.Results {
-		fmt.Printf("file_url: %s\nrepo: %s\n\n", item.FileUrl, item.Repo)
+		log.Infof("file_url: %s\nrepo: %s\n\n", item.FileUrl, item.Repo)
 	}
-	return nil
+}
+
+func GetEnvOrDefault(env, defaultValue string) string {
+	value := os.Getenv(env)
+	if value == "" {
+		value = defaultValue
+	}
+	return value
 }
