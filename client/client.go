@@ -11,8 +11,8 @@ import (
 	"google.golang.org/grpc"
 )
 
-const SEARCH_TERM = "testin"
-const USER = "stuff"
+const SEARCH_TERM = "search repo:jacobpuff/github-search-api"
+const USER = ""
 
 func main() {
 	if err := run(); err != nil {
@@ -36,6 +36,9 @@ func run() error {
 		return fmt.Errorf("failed to search: %w", err)
 	}
 
-	log.Printf("Successfully searched term '%s' filtered to user '%s', got response %v", SEARCH_TERM, USER, response)
+	log.Printf("Successfully searched term '%s' filtered to user '%s', got response:", SEARCH_TERM, USER)
+	for _, item := range response.Results {
+		fmt.Printf("file_url: %s\nrepo: %s\n\n", item.FileUrl, item.Repo)
+	}
 	return nil
 }
