@@ -63,7 +63,7 @@ func (s *GithubSearchServiceServer) Search(ctx context.Context, req *searchv1.Se
 	if search_term == "" && user == "" {
 		return nil, status.Errorf(codes.InvalidArgument, "Need at least one of search_term or user")
 	}
-	log.Infof("Got a request to search for '%t' filtered to user '%t'", search_term, user)
+	log.Infof("Got a request to search for '%s' filtered to user '%s'", search_term, user)
 	githubRequest, err := http.NewRequest("GET", "https://api.github.com/search/code", nil)
 	if err != nil {
 		log.Error("An error occured when creating request")
