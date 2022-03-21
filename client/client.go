@@ -24,12 +24,11 @@ func main() {
 func run() {
 	connectTo := GetEnvOrDefault("GH_SEARCH_SERVER_ADDRESS", "0.0.0.0")
 	connectTo += ":" + GetEnvOrDefault("GH_SEARCH_SERVER_PORT", "8080")
-	log.Infof("HWAH %s", connectTo)
 	conn, err := grpc.Dial(connectTo, grpc.WithBlock(), grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("failed to connect to GithubSearchService on %s: %w", connectTo, err)
 	}
-	log.Infof("Connected to", connectTo)
+	log.Infof("Connected to %s", connectTo)
 
 	github_search := searchv1.NewGithubSearchServiceClient(conn)
 	response, err := github_search.Search(context.Background(), &searchv1.SearchRequest{
