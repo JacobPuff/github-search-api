@@ -16,6 +16,8 @@ You can clone the repo, and github will redirect you if you visit in a browser t
 Limitations are pretty much the same as github's. You have to narrow down the search because this code doesn't use any authentication.
 You can find out how to narrow it down here [https://docs.github.com/en/search-github/searching-on-github/searching-code](https://docs.github.com/en/search-github/searching-on-github/searching-code)
 ## Running
+### Docker-compose
+Easiest method, run `docker-compose up` in the root directory and it will bring up the server and then the client that'll run a search.
 ### Docker
 For the server with docker you'll want to run 
 ```
