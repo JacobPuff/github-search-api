@@ -26,7 +26,7 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO111MODULE=on go build -a -o client c
 # Use distroless as minimal base image
 # Refer to https://github.com/GoogleContainerTools/distroless for more details
 FROM gcr.io/distroless/static:nonroot
-ENV GH_SEARCH_SERVER_ADDRESS=server
+ENV GH_SEARCH_SERVER_ADDRESS=ghsp-server
 ENV GH_SEARCH_SERVER_PORT=8080
 WORKDIR /
 COPY --from=builder /workspace/client .
