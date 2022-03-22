@@ -72,7 +72,7 @@ buf generate
 ```
 go run server/main.go
 ```
-5. Run the client. The client has two variables at the top of the run function if you wanna change their default values for the search.
+5. Run the client. The client has two variables at the top of the main function if you wanna change their default values for the search.
 ```
 go run client/client.go
 ```
