@@ -22,6 +22,9 @@ You can find out how to narrow it down here [https://docs.github.com/en/search-g
 Easiest method, run `docker-compose up` in the root directory and it will bring up the server and then the client that'll run a search.
 You can modify the search in the `search.env` file.
 ### Docker
+This method allows just the server to be run alone, and with a few more commands you can run the client as well.
+For the client you can modify the search in the `search.env` file.
+
 For the server with docker you'll want to build it with
 ```
 docker build . -t gh-search-project-server
@@ -47,7 +50,7 @@ docker run -it --rm --name ghsp-server --network ghsp-network gh-search-project-
 ```
 then you can run the client using this, the client doesn't need a name but it can make looking at the containers running easier
 ```
-docker run -it --rm --name ghsp-client --network ghsp-network gh-search-project-client
+docker run -it --rm --name ghsp-client --network ghsp-network --env-file search.env gh-search-project-client
 ```
 With this method youll want to clean up the docker network
 ```
