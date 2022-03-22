@@ -6,8 +6,9 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-var GHSearchServerAddress = GetEnvOrDefault("GH_SEARCH_SERVER_ADDRESS", "0.0.0.0")
-var GHSearchServerPort = GetEnvOrDefault("GH_SEARCH_SERVER_PORT", "9090")
+var SearchServerAddress = GetEnvOrDefault("GH_SEARCH_SERVER_ADDRESS", "0.0.0.0")
+var SearchServerPort = GetEnvOrDefault("GH_SEARCH_SERVER_PORT", "9090")
+var ResultsPerPage = GetEnvOrDefault("GH_RESULTS_PER_PAGE", "30")
 
 func SetupLogging() {
 	log.SetFormatter(&log.JSONFormatter{})

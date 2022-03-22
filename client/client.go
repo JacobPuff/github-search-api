@@ -17,7 +17,7 @@ func main() {
 	appconfig.SetupLogging()
 	var SearchTerm = appconfig.GetEnvOrDefault("SEARCH_TERM", "search repo:jacobpuff/github-search-api")
 	var User = appconfig.GetEnvOrDefault("USER", "")
-	connectTo := appconfig.GHSearchServerAddress + ":" + appconfig.GHSearchServerPort
+	connectTo := appconfig.SearchServerAddress + ":" + appconfig.SearchServerPort
 
 	log.Infof("Attempting connection to %s", connectTo)
 	conn, err := grpc.Dial(connectTo, grpc.WithBlock(), grpc.WithInsecure())
