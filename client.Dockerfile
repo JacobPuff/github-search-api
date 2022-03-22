@@ -16,6 +16,7 @@ COPY go.sum .
 # cache deps before building and copying source so that we don't need to re-download as much
 # and so that source changes don't invalidate our downloaded layer
 RUN go mod download
+COPY appconfig/ ./appconfig
 COPY githubsearchapis/ ./githubsearchapis
 COPY client/ ./client
 # generate compiled protos
