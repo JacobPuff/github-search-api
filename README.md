@@ -20,9 +20,9 @@ You can find out how to narrow it down here [https://docs.github.com/en/search-g
 ## Running
 ### Docker-compose
 Easiest method, run `docker-compose up` in the root directory and it will bring up the server and then the client that'll run a search.
-You can modify the search in the `search.env` file.
+You can modify the search in the `search.env` file. To run just the server run `docker-compose up server`.
 ### Docker
-This method allows just the server to be run alone, and with a few more commands you can run the client as well.
+This method allows the server to be run alone, or with a few more commands the client with it.
 For the client you can modify the search in the `search.env` file.
 
 For the server with docker you'll want to build it with
