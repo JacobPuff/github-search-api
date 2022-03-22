@@ -12,9 +12,6 @@ import (
 	"google.golang.org/grpc"
 )
 
-var SearchTerm = GetEnvOrDefault("SEARCH_TERM", "search repo:jacobpuff/github-search-api")
-var User = GetEnvOrDefault("USER", "")
-
 func main() {
 	log.SetFormatter(&log.JSONFormatter{})
 	log.SetOutput(os.Stdout)
@@ -22,6 +19,8 @@ func main() {
 	run()
 }
 func run() {
+	var SearchTerm = GetEnvOrDefault("SEARCH_TERM", "search repo:jacobpuff/github-search-api")
+	var User = GetEnvOrDefault("USER", "")
 	connectTo := GetEnvOrDefault("GH_SEARCH_SERVER_ADDRESS", "0.0.0.0")
 	connectTo += ":" + GetEnvOrDefault("GH_SEARCH_SERVER_PORT", "8080")
 
