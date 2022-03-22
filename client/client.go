@@ -49,8 +49,8 @@ func main() {
 
 func GetEnvOrDefault(env, defaultValue string) string {
 	value := os.Getenv(env)
-	if value == "" {
-		value = defaultValue
+	if value != "" {
+		return value
 	}
-	return value
+	return defaultValue
 }
