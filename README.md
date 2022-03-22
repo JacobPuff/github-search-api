@@ -19,15 +19,37 @@ You can find out how to narrow it down here [https://docs.github.com/en/search-g
 ### Docker-compose
 Easiest method, run `docker-compose up` in the root directory and it will bring up the server and then the client that'll run a search.
 ### Docker
-For the server with docker you'll want to run 
+For the server with docker you'll want to build it with
 ```
-docker build . -t gh-search project
+docker build . -t gh-search-project-server
 ```
-followed by
+And if you want the client too
 ```
-docker run -it -p 8080:8080 gh-search-project
+docker build . -f client.Dockerfile -t gh-search-project-client
+```
+
+To run just the server use
+```
+docker run -it -p 8080:8080 gh-search-project-server
 ```
 Afterwards you can kill the program with `Ctrl+C` or equivalent. You know how docker works.
+
+To run the server _and_ the client you'll need to make a docker network
+```
+docker network create ghsp-network
+```
+then run the server
+```
+docker run -it --rm --name ghsp-server --network ghsp-network gh-search-project-server
+```
+then you can run the client using this, the client doesn't need a name but it can make looking at the containers running easier
+```
+docker run -it --rm --name ghsp-client --network ghsp-network gh-search-project-client
+```
+With this method youll want to clean up the docker network
+```
+docker network rm ghsp-network
+```
 ### Just golang
 You can run this project without docker, it just requires a few more initial steps. This is how I run the client for manual testing for now.
 1. Install buf
