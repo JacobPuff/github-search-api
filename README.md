@@ -76,3 +76,10 @@ go run server/main.go
 ```
 go run client/client.go
 ```
+## TODO
+This is what I'd do if I had more time/the scope of the project was bigger
+- Move protos into their own repo doing releases to the buf BSR. This allows for easier creation of custom clients
+- CI/CD tests
+- CI/CD controlled semantic releases
+- CI/CD PR name validation
+- Could do the helm chart thing
