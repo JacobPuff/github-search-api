@@ -36,7 +36,7 @@ docker build . -f client.Dockerfile -t gh-search-project-client
 
 To run just the server use
 ```
-docker run -it -p 8080:8080 gh-search-project-server
+docker run -it -p 9090:9090 gh-search-project-server
 ```
 Afterwards you can kill the program with `Ctrl+C` or equivalent. You know how docker works.
 
