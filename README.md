@@ -12,12 +12,15 @@ I think they match up pretty nicely, and I didn't want to overwhelm the response
 For the repo field in the Result, I could have put a few things like `git@github.com/[url stuff]` but I decided to go with the https `.git` file e.g.
 `https://github.com/JacobPuff/github-search-api.git`. What I return would depend on the use case, and this covers two for one in.
 You can clone the repo, and github will redirect you if you visit in a browser to view the repo.
+### Why are the env vars split for docker-compose?
+Just for ease of use and separation of concerns. I was able to easily split `search.env` to just have the search variables, and keep the internal `GH_SEARCH_SERVER_ADDRESS` variable on it's own in a nice way.
 ## Limitations
 Limitations are pretty much the same as github's. You have to narrow down the search because this code doesn't use any authentication.
 You can find out how to narrow it down here [https://docs.github.com/en/search-github/searching-on-github/searching-code](https://docs.github.com/en/search-github/searching-on-github/searching-code)
 ## Running
 ### Docker-compose
 Easiest method, run `docker-compose up` in the root directory and it will bring up the server and then the client that'll run a search.
+You can modify the search in the `search.env` file.
 ### Docker
 For the server with docker you'll want to build it with
 ```
