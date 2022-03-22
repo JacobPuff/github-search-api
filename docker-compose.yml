@@ -7,5 +7,7 @@ services:
         build:
             context: .
             dockerfile: client.Dockerfile
+        environment:
+            - GH_SEARCH_SERVER_ADDRESS=server
         depends_on:
             - "server"
