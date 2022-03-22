@@ -9,6 +9,7 @@ import (
 	// This import path is based on the name declaration in the go.mod,
 	// and the gen/proto/go output location in the buf.gen.yaml.
 	searchv1 "github.com/JacobPuff/github-search-api/gen/proto/go/githubsearch/v1"
+
 	"google.golang.org/grpc"
 )
 
