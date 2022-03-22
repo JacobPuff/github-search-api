@@ -39,7 +39,7 @@ func main() {
 }
 
 func run() {
-	listenOn := "0.0.0.0:8080"
+	listenOn := "0.0.0.0:9090"
 	listener, err := net.Listen("tcp", listenOn)
 	if err != nil {
 		log.Fatalf("failed to listen on %s: %w", listenOn, err)
