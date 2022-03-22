@@ -58,7 +58,7 @@ docker network rm ghsp-network
 ```
 ### Just golang
 You can run this project without docker, it just requires a few more initial steps. This is how I run the client for manual testing for now.
-1. Install buf
+1. Install buf. You can find out how here [https://docs.buf.build/installation](https://docs.buf.build/installation)
 2. Install go grpc dependencies
 ```
 go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
