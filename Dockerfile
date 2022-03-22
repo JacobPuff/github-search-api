@@ -29,6 +29,6 @@ FROM gcr.io/distroless/static:nonroot
 WORKDIR /
 COPY --from=builder /workspace/main .
 USER 65532:65532
-EXPOSE 8080
+EXPOSE 9090
 
 ENTRYPOINT ["/main"]
