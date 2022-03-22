@@ -12,8 +12,8 @@ import (
 	"google.golang.org/grpc"
 )
 
-var SEARCH_TERM = GetEnvOrDefault("SEARCH_TERM", "search repo:jacobpuff/github-search-api")
-var USER = GetEnvOrDefault("USER", "")
+var SearchTerm = GetEnvOrDefault("SEARCH_TERM", "search repo:jacobpuff/github-search-api")
+var User = GetEnvOrDefault("USER", "")
 
 func main() {
 	log.SetFormatter(&log.JSONFormatter{})
