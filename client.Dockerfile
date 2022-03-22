@@ -27,10 +27,10 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO111MODULE=on go build -a -o client c
 # Refer to https://github.com/GoogleContainerTools/distroless for more details
 FROM gcr.io/distroless/static:nonroot
 ENV GH_SEARCH_SERVER_ADDRESS=ghsp-server
-ENV GH_SEARCH_SERVER_PORT=8080
+ENV GH_SEARCH_SERVER_PORT=9090
 WORKDIR /
 COPY --from=builder /workspace/client .
 USER 65532:65532
-EXPOSE 8080
+EXPOSE 9090
 
 ENTRYPOINT ["/client"]
