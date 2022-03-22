@@ -34,14 +34,14 @@ func run() {
 
 	github_search := searchv1.NewGithubSearchServiceClient(conn)
 	response, err := github_search.Search(context.Background(), &searchv1.SearchRequest{
-		SearchTerm: SEARCH_TERM,
-		User:       USER,
+		SearchTerm: SearchTerm,
+		User:       User,
 	})
 	if err != nil {
 		log.Fatalf("failed to search: %s", err)
 	}
 
-	log.Infof("Successfully searched term '%s' filtered to user '%s', got response:", SEARCH_TERM, USER)
+	log.Infof("Successfully searched term '%s' filtered to user '%s', got response:", SearchTerm, User)
 	for _, item := range response.Results {
 		log.Infof("file_url: %s\nrepo: %s\n\n", item.FileUrl, item.Repo)
 	}
