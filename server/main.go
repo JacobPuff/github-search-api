@@ -19,8 +19,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-const ResultsPerPage = "30"
-
 type GithubResults struct {
 	TotalCount        int  `json:"total_count"`
 	IncompleteResults bool `json:"incomplete_results"`
@@ -73,7 +71,7 @@ func (s *GithubSearchServiceServer) Search(ctx context.Context, req *searchv1.Se
 	}
 
 	queryParams.Add("q", search_term)
-	queryParams.Add("per_page", ResultsPerPage)
+	queryParams.Add("per_page", appconfig.ResultsPerPage)
 	githubRequest.URL.RawQuery = queryParams.Encode()
 
 	response, err := http.DefaultClient.Do(githubRequest)
