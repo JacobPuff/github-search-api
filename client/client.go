@@ -23,7 +23,7 @@ func main() {
 	var SearchTerm = GetEnvOrDefault("SEARCH_TERM", "search repo:jacobpuff/github-search-api")
 	var User = GetEnvOrDefault("USER", "")
 	connectTo := GetEnvOrDefault("GH_SEARCH_SERVER_ADDRESS", "0.0.0.0")
-	connectTo += ":" + GetEnvOrDefault("GH_SEARCH_SERVER_PORT", "8080")
+	connectTo += ":" + GetEnvOrDefault("GH_SEARCH_SERVER_PORT", "9090")
 
 	log.Infof("Attempting connection to %s", connectTo)
 	conn, err := grpc.Dial(connectTo, grpc.WithBlock(), grpc.WithInsecure())
