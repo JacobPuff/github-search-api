@@ -21,9 +21,11 @@ You can find out how to narrow it down here [https://docs.github.com/en/search-g
 ### Docker-compose
 Easiest method, run `docker-compose up` in the root directory and it will bring up the server and then the client that'll run a search.
 You can modify the search in the `search.env` file. To run just the server run `docker-compose up server`.
+If you want more results per search you can use the `GH_RESULTS_PER_PAGE` env var for the server, which defaults to 30.
 ### Docker
 This method allows the server to be run alone, or with a few more commands the client with it.
 For the client you can modify the search in the `search.env` file.
+If you want more results per search you can use the `GH_RESULTS_PER_PAGE` env var for the server, which defaults to 30.
 
 For the server with docker you'll want to build it with
 ```
@@ -68,11 +70,11 @@ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 ```
 buf generate
 ```
-4. Run the server
+4. Run the server. The server uses `ResultsPerPage` from appconfig if you want to get more results. It defaults to 30.
 ```
 go run server/main.go
 ```
-5. Run the client. The client has two variables at the top of the main function if you wanna change their default values for the search.
+5. Run the client. The client has two variables for search params at the top of the main function if you wanna change their default values.
 ```
 go run client/client.go
 ```
