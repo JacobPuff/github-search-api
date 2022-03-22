@@ -6,10 +6,10 @@ import (
 	"fmt"
 	"net"
 	"net/http"
-	"os"
 
 	log "github.com/sirupsen/logrus"
 
+	appconfig "github.com/JacobPuff/github-search-api/appconfig"
 	// This import path is based on the name declaration in the go.mod,
 	// and the gen/proto/go output location in the buf.gen.yaml.
 	searchv1 "github.com/JacobPuff/github-search-api/gen/proto/go/githubsearch/v1"
@@ -19,7 +19,7 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-const RESULTS_PER_PAGE = "30"
+const ResultsPerPage = "30"
 
 type GithubResults struct {
 	TotalCount        int  `json:"total_count"`
@@ -33,13 +33,7 @@ type GithubResults struct {
 }
 
 func main() {
-	log.SetFormatter(&log.JSONFormatter{})
-	log.SetOutput(os.Stdout)
-	log.SetLevel(log.InfoLevel)
-	run()
-}
-
-func run() {
+	appconfig.SetupLogging()
 	listenOn := "0.0.0.0:9090"
 	listener, err := net.Listen("tcp", listenOn)
 	if err != nil {
@@ -79,7 +73,7 @@ func (s *GithubSearchServiceServer) Search(ctx context.Context, req *searchv1.Se
 	}
 
 	queryParams.Add("q", search_term)
-	queryParams.Add("per_page", RESULTS_PER_PAGE)
+	queryParams.Add("per_page", ResultsPerPage)
 	githubRequest.URL.RawQuery = queryParams.Encode()
 
 	response, err := http.DefaultClient.Do(githubRequest)
