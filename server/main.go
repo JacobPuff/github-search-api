@@ -110,8 +110,6 @@ func (s *GithubSearchServiceServer) Search(ctx context.Context, req *searchv1.Se
 		}
 		grpcResults = append(grpcResults, result)
 	}
-	// This makes the output easier to read
-	fmt.Println("\n")
 
 	return &searchv1.SearchResponse{Results: grpcResults}, nil
 }
