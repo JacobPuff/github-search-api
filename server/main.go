@@ -32,7 +32,7 @@ type GithubResults struct {
 
 func main() {
 	appconfig.SetupLogging()
-	listenOn := "0.0.0.0:9090"
+	listenOn := appconfig.SearchServerAddress + ":" + appconfig.SearchServerPort
 	listener, err := net.Listen("tcp", listenOn)
 	if err != nil {
 		log.Fatalf("failed to listen on %s: %w", listenOn, err)
