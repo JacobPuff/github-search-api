@@ -9,5 +9,7 @@ services:
             dockerfile: client.Dockerfile
         environment:
             - GH_SEARCH_SERVER_ADDRESS=server
+        env_file:
+            - search.env
         depends_on:
             - "server"
