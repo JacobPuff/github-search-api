@@ -3,6 +3,8 @@ services:
         build: .
         ports:
             - "9090:9090"
+        environment:
+            - GH_RESULTS_PER_PAGE=30
     client:
         build:
             context: .
