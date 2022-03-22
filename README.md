@@ -64,7 +64,7 @@ You can run this project without docker, it just requires a few more initial ste
 go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 ```
-3. Compile protobufs.
+3. Compile protobufs in the root of the project
 ```
 buf generate
 ```
@@ -72,7 +72,7 @@ buf generate
 ```
 go run server/main.go
 ```
-5. Run the client. The client has two constants at the top of the file if you wanna change their values for the search.
+5. Run the client. The client has two variables at the top of the file if you wanna change their values for the search.
 ```
 go run client/client.go
 ```
