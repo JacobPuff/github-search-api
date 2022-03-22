@@ -28,7 +28,7 @@ func run() {
 	log.Infof("Attempting connection to %s", connectTo)
 	conn, err := grpc.Dial(connectTo, grpc.WithBlock(), grpc.WithInsecure())
 	if err != nil {
-		log.Fatalf("failed to connect to GithubSearchService on %s: %w", connectTo, err)
+		log.Fatalf("failed to connect to GithubSearchService on %s: %s", connectTo, err)
 	}
 	log.Infof("Connected to %s", connectTo)
 
@@ -38,7 +38,7 @@ func run() {
 		User:       USER,
 	})
 	if err != nil {
-		log.Fatalf("failed to search: %w", err)
+		log.Fatalf("failed to search: %s", err)
 	}
 
 	log.Infof("Successfully searched term '%s' filtered to user '%s', got response:", SEARCH_TERM, USER)
