@@ -1,0 +1,17 @@
+services:
+    server:
+        build: .
+        ports:
+            - "9090:9090"
+        environment:
+            - GH_RESULTS_PER_PAGE=30
+    client:
+        build:
+            context: .
+            dockerfile: client.Dockerfile
+        environment:
+            - GH_SEARCH_SERVER_ADDRESS=server
+        env_file:
+            - search.env
+        depends_on:
+            - "server"
